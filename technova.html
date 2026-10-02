@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>TechNova Revenue Dashboard</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background: #809daf;
+        color: #222;
+        transition: 0.3s;
+    }
+
+    /* Sidebar */
+
+    .sidebar {
+        width: 230px;
+        height: 100vh;
+        background: #1e3a8a;
+        color: white;
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding: 25px 20px;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .logo span {
+        color: #93c5fd;
+    }
+
+    .sidebar a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 14px 10px;
+        margin-bottom: 8px;
+        border-radius: 8px;
+    }
+
+    .sidebar a:hover {
+        background: #0a4a77;
+    }
+
+    /* Main content */
+
+    .main {
+        margin-left: 230px;
+        min-height: 100vh;
+    }
+
+    /* Top bar */
+
+    .topbar {
+        height: 70px;
+        background: #1c306c;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Animated TechNova Logo */
+
+    .top-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 24px;
+        font-weight: bold;
+        letter-spacing: 1px;
+        animation: floatLogo 2.5s ease-in-out infinite;
+    }
+
+    .top-logo-icon {
+        width: 38px;
+        height: 38px;
+        background: #93c5fd;
+        color: #1e3a8a;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 21px;
+        box-shadow: 0 0 12px rgba(147, 197, 253, 0.8);
+        animation: glowLogo 2s ease-in-out infinite;
+    }
+
+    .top-logo span {
+        color: #93c5fd;
+    }
+
+    @keyframes floatLogo {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-4px);
+        }
+    }
+
+    @keyframes glowLogo {
+
+        0%,
+        100% {
+            box-shadow: 0 0 8px rgba(147, 197, 253, 0.5);
+        }
+
+        50% {
+            box-shadow: 0 0 20px rgba(147, 197, 253, 1);
+        }
+    }
+
+    /* Dark mode button */
+
+    .theme-button {
+        border: none;
+        background: #1e3a8a;
+        color: white;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .theme-button:hover {
+        background: #2563eb;
+    }
+
+    /* Intro */
+
+    .intro {
+        padding: 35px 30px 20px;
+    }
+
+    .intro h1 {
+        font-size: 30px;
+        margin-bottom: 8px;
+    }
+
+    .intro p {
+        color: #29334c;
+    }
+
+    /* Charts */
+
+    .chart-container {
+        width: 90%;
+        max-width: 1000px;
+        margin: 20px auto;
+    }
+
+    .chart-card {
+        background: white;
+        padding: 25px;
+        margin-bottom: 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .chart-card h2 {
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
+
+    /* Footer */
+
+    footer {
+        text-align: center;
+        background: #1c306c;
+        color: white;
+        padding: 20px;
+        margin-top: 40px;
+    }
+
+    /* Dark mode */
+
+    body.dark {
+        background: #111827;
+        color: #f9fafb;
+    }
+
+    body.dark .topbar {
+        background: #1f2937;
+        color: white;
+    }
+
+    body.dark .chart-card {
+        background: #1f2937;
+        color: white;
+    }
+
+    body.dark .intro p {
+        color: #cbd5e1;
+    }
+
+    body.dark .chart-card h2 {
+        color: white;
+    }
+
+    /* Mobile */
+
+    @media (max-width: 700px) {
+
+        .sidebar {
+            width: 70px;
+            padding: 20px 10px;
+        }
+
+        .logo {
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .logo span {
+            display: none;
+        }
+
+        .sidebar a {
+            font-size: 0;
+            text-align: center;
+        }
+
+        .sidebar a::first-letter {
+            font-size: 20px;
+        }
+
+        .main {
+            margin-left: 70px;
+        }
+
+        .topbar {
+            padding: 0 15px;
+        }
+
+        .topbar h2 {
+            font-size: 18px;
+        }
+
+        .top-logo {
+            font-size: 18px;
+        }
+
+        .top-logo-icon {
+            width: 32px;
+            height: 32px;
+            font-size: 17px;
+        }
+
+        .intro {
+            padding: 25px 20px 15px;
+        }
+
+        .intro h1 {
+            font-size: 24px;
+        }
+
+        .chart-container {
+            width: 94%;
+        }
+
+        .chart-card {
+            padding: 18px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<!-- Sidebar -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        Tech<span>Nova</span>
+    </div>
+
+    <a href="#">🏠 Dashboard</a>
+    <a href="#charts">📊 Charts</a>
+    <a href="#analytics">📈 Analytics</a>
+    <a href="#about">⚙️ Settings</a>
+
+</aside>
+
+
+<!-- Main content -->
+
+<main class="main">
+
+    <!-- Top bar -->
+
+    <div class="topbar">
+
+        <!-- Animated TechNova Logo -->
+
+        <div class="top-logo">
+
+            <div class="top-logo-icon">
+                ⚡
+            </div>
+
+            <div>
+                Tech<span>Nova</span>
+            </div>
+
+        </div>
+
+
+        <button class="theme-button" onclick="toggleDarkMode()">
+            🌙 Dark Mode
+        </button>
+
+    </div>
+
+
+    <!-- Introduction -->
+
+    <section class="intro">
+
+        <h1>Revenue Visualization</h1>
+
+        <p>
+            View TechNova's revenue, expenses and profit through interactive charts.
+        </p>
+
+    </section>
+
+
+    <!-- Charts -->
+
+    <div class="chart-container" id="charts">
+
+        <!-- Line Chart -->
+
+        <div class="chart-card">
+
+            <h2>📈 Revenue, Expenses & Profit</h2>
+
+            <canvas id="myChart1"></canvas>
+
+        </div>
+
+
+        <!-- Bar Chart -->
+
+        <div class="chart-card">
+
+            <h2>📊 Monthly Revenue</h2>
+
+            <canvas id="myChart2"></canvas>
+
+        </div>
+
+
+        <!-- Pie Chart -->
+
+        <div class="chart-card">
+
+            <h2>🥧 June Revenue Distribution</h2>
+
+            <canvas id="myChart3"></canvas>
+
+        </div>
+
+    </div>
+
+
+    <!-- Footer -->
+
+    <footer id="about">
+
+        © 2026 TechNova | Revenue Visualization Dashboard
+
+    </footer>
+
+</main>
+
+
+<!-- Chart.js -->
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+    /* Dark Mode */
+
+    function toggleDarkMode() {
+
+        document.body.classList.toggle("dark");
+
+    }
+
+
+    /* Chart variables */
+
+    const ctx1 = document.getElementById('myChart1');
+    const ctx2 = document.getElementById('myChart2');
+    const ctx3 = document.getElementById('myChart3');
+
+
+    /* Your original data */
+
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+
+    const revenue = [50000, 60000, 55000, 70000, 75000, 80000];
+
+    const expenses = [30000, 35000, 32000, 40000, 42000, 45000];
+
+    const profit = [20000, 25000, 23000, 30000, 33000, 35000];
+
+
+    /* Line Chart */
+
+    new Chart(ctx1, {
+
+        type: 'line',
+
+        data: {
+
+            labels: months,
+
+            datasets: [
+
+                {
+                    label: 'Revenue',
+                    data: revenue,
+                    borderColor: 'blue',
+                    fill: false
+                },
+
+                {
+                    label: 'Expenses',
+                    data: expenses,
+                    borderColor: 'red',
+                    fill: false
+                },
+
+                {
+                    label: 'Profit',
+                    data: profit,
+                    borderColor: 'green',
+                    fill: false
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            animation: {
+                duration: 1500
+            },
+
+            plugins: {
+
+                legend: {
+                    position: 'bottom'
+                }
+
+            }
+
+        }
+
+    });
+
+
+    /* Bar Chart */
+
+    new Chart(ctx2, {
+
+        type: 'bar',
+
+        data: {
+
+            labels: months,
+
+            datasets: [
+
+                {
+                    label: 'Revenue',
+                    data: revenue,
+                    backgroundColor: [
+                        'yellow',
+                        'pink',
+                        'blue',
+                        'purple',
+                        'orange',
+                        'red'
+                    ]
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            animation: {
+                duration: 1500
+            },
+
+            plugins: {
+
+                legend: {
+                    position: 'bottom'
+                }
+
+            }
+
+        }
+
+    });
+
+
+    /* Pie Chart */
+
+    new Chart(ctx3, {
+
+        type: 'pie',
+
+        data: {
+
+            labels: [
+                'Reinvestment 40%',
+                'Salary 35%',
+                'Miscelleneous 25%'
+            ],
+
+            datasets: [
+
+                {
+                    data: [40, 35, 25],
+
+                    backgroundColor: [
+                        'blue',
+                        'pink',
+                        'yellow'
+                    ]
+                }
+
+            ]
+
+        },
+
+        options: {
+
+            animation: {
+                duration: 1500
+            },
+
+            plugins: {
+
+                legend: {
+                    position: 'bottom'
+                }
+
+            }
+
+        }
+
+    });
+
+</script>
+```
+
+</body>
+
+</html>
